@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冥想APP原型</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+        }
+        .screen {
+            width: 375px;
+            height: 812px;
+            overflow: hidden;
+            position: relative;
+            margin: 20px;
+            border-radius: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        .status-bar {
+            height: 44px;
+        }
+        .bottom-bar {
+            height: 83px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-wrap justify-center p-8">
+    <!-- 启动/引导页 -->
+    <div class="screen bg-indigo-50">
+        <div class="w-full h-full flex flex-col items-center justify-center p-8">
+            <div class="w-32 h-32 rounded-full bg-indigo-500 mb-8 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-indigo-900 mb-2">静心</h1>
+            <p class="text-indigo-700 text-center mb-8">开启你的冥想旅程，找回内心的平静</p>
+            <button class="bg-indigo-600 text-white py-3 px-8 rounded-full text-lg font-medium shadow-lg mb-4">开始体验</button>
+            <p class="text-indigo-500 text-sm">已有账号？ <span class="font-medium">登录</span></p>
+        </div>
+    </div>
+
+    <!-- 注册/登录页 -->
+    <div class="screen bg-white">
+        <div class="status-bar bg-white"></div>
+        <div class="p-8 h-full flex flex-col">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">登录</h1>
+                <p class="text-gray-500">欢迎回来，请登录你的账号</p>
+            </div>
+            
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-medium mb-2">手机号码</label>
+                <input type="tel" class="w-full border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="请输入手机号码">
+            </div>
+            
+            <div class="mb-8">
+                <label class="block text-gray-700 text-sm font-medium mb-2">密码</label>
+                <input type="password" class="w-full border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="请输入密码">
+                <div class="flex justify-end mt-2">
+                    <a href="#" class="text-sm text-indigo-600">忘记密码？</a>
+                </div>
+            </div>
+            
+            <button class="bg-indigo-600 text-white py-4 rounded-lg text-lg font-medium shadow-md mb-6">登录</button>
+            
+            <div class="flex items-center mb-8">
+                <div class="flex-grow h-px bg-gray-200"></div>
+                <p class="mx-4 text-gray-500 text-sm">或通过以下方式登录</p>
+                <div class="flex-grow h-px bg-gray-200"></div>
+            </div>
+            
+            <div class="flex justify-center gap-6 mb-8">
+                <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.95 8H14.23C14.03 7.17 13.71 6.4 13.28 5.7C14.83 6.08 16.11 6.88 16.95 8ZM12 4C12.74 4.73 13.41 6.24 13.77 8H10.23C10.6 6.24 11.26 4.72 12 4ZM4 12C4 11.05 4.21 10.14 4.58 9.33H7.57C7.49 10.2 7.42 11.09 7.42 12C7.42 12.91 7.49 13.8 7.57 14.67H4.58C4.21 13.86 4 12.95 4 12ZM7.1 16.67H5.05C5.89 17.79 7.17 18.58 8.72 18.95C8.28 18.26 7.97 17.49 7.76 16.67H7.1ZM7.1 7.33H7.76C7.97 6.51 8.28 5.74 8.72 5.05C7.17 5.42 5.89 6.21 5.05 7.33H7.1ZM12 20C11.26 19.27 10.59 17.76 10.23 16H13.77C13.4 17.76 12.74 19.28 12 20ZM14.17 14H9.83C9.74 13.34 9.68 12.68 9.68 12C9.68 11.32 9.74 10.65 9.83 10H14.17C14.26 10.65 14.32 11.32 14.32 12C14.32 12.68 14.26 13.34 14.17 14ZM14.72 18.95C16.27 18.57 17.56 17.79 18.4 16.67H16.35C16.14 17.49 15.82 18.26 15.38 18.95H14.72ZM16.43 12C16.43 11.09 16.36 10.2 16.28 9.33H19.27C19.64 10.14 19.85 11.05 19.85 12C19.85 12.95 19.64 13.86 19.27 14.67H16.28C16.36 13.8 16.43 12.91 16.43 12Z"/>
+                    </svg>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.9201 15.8299C22.8501 15.4499 22.5601 15.1699 22.1701 15.1199C21.9001 15.0899 21.6601 15.0699 21.4501 15.0599C20.5101 15.0099 19.4101 14.7499 18.6401 14.0299C17.9901 13.4099 17.6901 12.5599 17.6901 11.5599C17.6901 10.9499 17.8301 10.4699 18.0901 10.0499C18.3601 9.61994 18.4801 9.08994 18.4501 8.54994C18.4201 7.89994 18.1201 7.29994 17.6301 6.89994C17.2401 6.55994 16.7601 6.33994 16.2601 6.26994C15.9001 6.21994 15.5601 6.36994 15.3301 6.64994C15.0901 6.93994 15.0201 7.32994 15.1401 7.67994C15.2201 7.91994 15.2801 8.16994 15.3101 8.42994C15.3701 8.96994 15.3301 9.51994 15.1801 10.0399C15.0301 10.5599 14.7901 11.0599 14.4701 11.4899C14.2801 11.7399 14.0801 11.9599 13.8601 12.1599C13.7401 12.2699 13.6201 12.3799 13.4901 12.4799C12.8401 13.0099 12.0001 13.2999 11.0901 13.3299C9.97007 13.3699 8.92007 12.9999 8.05007 12.2699C7.17007 11.5299 6.64007 10.4799 6.54007 9.28994C6.39007 7.50994 7.23007 5.91994 8.53007 5.01994C9.42007 4.39994 10.4001 4.09994 11.4101 4.09994C12.0401 4.09994 12.6701 4.19994 13.2901 4.39994C13.6401 4.51994 14.0201 4.42994 14.2801 4.18994C14.6701 3.82994 14.7101 3.18994 14.3601 2.78994C14.1701 2.57994 13.9301 2.42994 13.6601 2.33994C12.9301 2.11994 12.1701 2.00994 11.4101 2.00994C9.94007 2.00994 8.52007 2.41994 7.24007 3.2099C5.24007 4.4999 3.99007 6.73994 3.99007 9.15994C3.99007 11.8099 5.29007 14.1399 7.47007 15.4399C8.88007 16.3099 10.4001 16.7499 11.9601 16.7499C14.0601 16.7499 16.0701 15.9199 17.5201 14.4999C17.9401 14.0899 18.2401 13.9399 18.7401 13.9399C19.1301 13.9399 19.6201 14.0199 20.2001 14.1899C20.6201 14.3099 21.0601 14.3799 21.5001 14.3899C21.5801 14.3899 21.6701 14.3999 21.7501 14.3999C21.7801 14.3999 21.8101 14.3999 21.8401 14.3999C22.3201 14.3999 22.7101 14.7799 22.7201 15.2499C22.7401 15.9499 22.5201 16.6299 22.0901 17.1599C21.2401 18.1999 19.9401 18.8299 18.5201 18.9199C17.6401 18.9799 16.7701 18.7599 16.1401 18.2899C15.7001 17.9499 15.3501 17.8399 14.9301 17.8399C14.4101 17.8399 13.9501 18.0199 13.6401 18.3499C13.1601 18.8599 13.0901 19.6699 13.4901 20.2599C13.6801 20.5399 13.9701 20.7399 14.3001 20.8399C15.4901 21.2099 16.7101 21.0399 17.8501 20.3399C19.9301 19.0899 21.2001 17.2799 21.9501 14.4699C21.9501 14.4499 21.9601 14.4399 21.9601 14.4199L22.0001 14.2599C22.0601 14.0199 22.9901 15.9499 22.9201 15.8299Z"/>
+                    </svg>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12.73 17.58C12.73 17.9 12.44 18.16 12.1 18.14C7.28 17.85 3.59 13.84 4.07 8.96C4.3 6.66 5.6 4.61 7.44 3.36C7.75 3.16 8.14 3.32 8.24 3.67C9.2 7.21 10.97 10.03 13.38 12.11C13.87 12.54 14.34 13 14.79 13.48C15.13 13.83 15.01 14.45 14.54 14.58C14.22 14.67 13.92 14.81 13.63 14.99C13.25 15.23 13.18 15.77 13.46 16.11C13.75 16.45 14.24 16.94 14.87 17.57C14.95 17.65 14.96 17.76 14.87 17.83C14.56 18.06 14.22 18.23 13.86 18.35C13.56 18.45 13.24 18.11 12.95 17.89L12.73 17.58Z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-600 text-sm">还没有账号？ <span class="text-indigo-600 font-medium">立即注册</span></p>
+        </div>
+    </div>
+
+    <!-- 首页 -->
+    <div class="screen bg-white">
+        <div class="status-bar bg-white"></div>
+        <div class="p-6 pb-20">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800">你好，李明</h1>
+                    <p class="text-gray-500">今天是你冥想的第12天</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80')"></div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-5 mb-6 text-white">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="font-medium">今日推荐</h3>
+                    <div class="bg-white bg-opacity-20 rounded-full px-3 py-1 text-xs">20分钟</div>
+                </div>
+                <h2 class="text-xl font-bold mb-3">早晨唤醒冥想</h2>
+                <p class="text-sm opacity-80 mb-4">用平静的心态迎接新的一天，建立正念的早晨习惯</p>
+                <button class="bg-white text-indigo-600 rounded-full py-2 px-4 text-sm font-medium">开始冥想</button>
+            </div>
+            
+            <h3 class="font-medium text-gray-800 mb-4">为你推荐</h3>
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="bg-gray-50 rounded-xl p-4">
+                    <div class="h-24 rounded-lg bg-cover bg-center mb-3" style="background-image: url('https://images.unsplash.com/photo-1615552269451-e57136b5176d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"></div>
+                    <h3 class="font-medium text-gray-800 mb-1">减压放松</h3>
+                    <p class="text-xs text-gray-500">10分钟</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4">
+                    <div class="h-24 rounded-lg bg-cover bg-center mb-3" style="background-image: url('https://images.unsplash.com/photo-1516149893016-813d9a01d5d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"></div>
+                    <h3 class="font-medium text-gray-800 mb-1">睡前放松</h3>
+                    <p class="text-xs text-gray-500">15分钟</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4">
+                    <div class="h-24 rounded-lg bg-cover bg-center mb-3" style="background-image: url('https://images.unsplash.com/photo-1551651057-8c14886e7bc3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"></div>
+                    <h3 class="font-medium text-gray-800 mb-1">专注力提升</h3>
+                    <p class="text-xs text-gray-500">8分钟</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4">
+                    <div class="h-24 rounded-lg bg-cover bg-center mb-3" style="background-image: url('https://images.unsplash.com/photo-1589279158718-309e16cf2c83?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"></div>
+                    <h3 class="font-medium text-gray-800 mb-1">情绪平衡</h3>
+                    <p class="text-xs text-gray-500">12分钟</p>
+                </div>
+            </div>
+            
+            <h3 class="font-medium text-gray-800 mb-4">冥想课程</h3>
+            <div class="space-y-4">
+                <div class="flex bg-gray-50 rounded-xl p-3">
+                    <div class="w-16 h-16 rounded-lg bg-cover bg-center mr-3" style="background-image: url('https://images.unsplash.com/photo-1605722243979-fe0be8158232?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')"></div>
+                    <div class="flex-1">
+                        <h3 class="font-medium text-gray-800 mb-1">7天初学者冥想</h3>
+                        <p class="text-xs text-gray-500 mb-1">7节课 · 共70分钟</p>
+                        <div class="w-full h-1 bg-gray-200 rounded-full">
+                            <div class="w-3/4 h-1 bg-indigo-500 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex bg-gray-50 rounded-xl p-3">
+                    <div class="w-16 h-16 rounded-lg bg-cover bg-center mr-3" style="background-image: url('https://images.unsplash.com/photo-1591228127791-8e2eaef098d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')"></div>
+                    <div class="flex-1">
+                        <h3 class="font-medium text-gray-800 mb-1">专注力提升课程</h3>
+                        <p class="text-xs text-gray-500 mb-1">10节课 · 共120分钟</p>
+                        <div class="w-full h-1 bg-gray-200 rounded-full">
+                            <div class="w-1/4 h-1 bg-indigo-500 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bottom-bar bg-white border-t border-gray-200 absolute bottom-0 left-0 right-0 flex justify-around items-center">
+            <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span class="text-xs mt-1 text-indigo-600 font-medium">首页</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <span class="text-xs mt-1 text-gray-400">发现</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <span class="text-xs mt-1 text-gray-400">统计</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span class="text-xs mt-1 text-gray-400">我的</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 冥想课程详情页 -->
+    <div class="screen bg-white">
+        <div class="status-bar bg-white"></div>
+        <div class="relative">
+            <div class="h-64 w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1555413293-24c2b681fec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+            <button class="absolute top-4 left-4 bg-white bg-opacity-20 backdrop-blur-md rounded-full p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button class="absolute top-4 right-4 bg-white bg-opacity-20 backdrop-blur-md rounded-full p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+            </button>
+        </div>
+        
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-2xl font-bold text-gray-800">早晨唤醒冥想</h1>
+                <div class="bg-indigo-100 text-indigo-600 rounded-full px-3 py-1 text-sm">20分钟</div>
+            </div>
+            <p class="text-gray-600 mb-6">一天之计在于晨，用这段冥想为自己的一天注入平静与正能量。适合在起床后进行，帮助你清醒头脑，设定积极的心态。</p>
+            
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80')"></div>
+                <div class="ml-3">
+                    <h3 class="font-medium text-gray-800">张老师</h3>
+                    <p class="text-xs text-gray-500">正念冥想导师</p>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                <h3 class="font-medium text-gray-800 mb-3">你将收获</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p class="text-gray-600 text-sm">提升一天的专注力和能量</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p class="text-gray-600 text-sm">减轻早晨的焦虑感</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p class="text-gray-600 text-sm">建立健康的早晨习惯</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="font-medium text-gray-800 mb-3">相关推荐</h3>
+            <div class="flex space-x-4 overflow-x-auto pb-4">
+                <div class="flex-shrink-0 w-40">
+                    <div class="h-24 rounded-lg bg-cover bg-center mb-2" style="background-image: url('https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80')"></div>
+                    <h4 class="font-medium text-gray-800 text-sm">午间充电</h4>
+                    <p class="text-xs text-gray-500">10分钟</p>
+                </div>
+                <div class="flex-shrink-0 w-40">
+                    <div class="h-24 rounded-lg bg-cover bg-center mb-2" style="background-image: url('https://images.unsplash.com/photo-1572276596237-5db2c3e16c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80')"></div>
+                    <h4 class="font-medium text-gray-800 text-sm">专注力训练</h4>
+                    <p class="text-xs text-gray-500">15分钟</p>
+                </div>
+                <div class="flex-shrink-0 w-40">
+                    <div class="h-24 rounded-lg bg-cover bg-center mb-2" style="background-image: url('https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80')"></div>
+                    <h4 class="font-medium text-gray-800 text-sm">身体扫描</h4>
+                    <p class="text-xs text-gray-500">18分钟</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200">
+<button class="bg-indigo-600 text-white py-4 rounded-xl w-full font-medium text-lg shadow-md">开始冥想</button>
+</div>
+</div>
+</div>
+
+<!-- 冥想播放页面 -->
+<div class="screen bg-gradient-to-b from-indigo-900 to-purple-900 text-white">
+<div class="status-bar bg-transparent"></div>
+<div class="relative h-full flex flex-col p-6">
+<div class="flex justify-between items-center mb-6">
+    <button class="bg-white bg-opacity-20 backdrop-blur-md rounded-full p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    <button class="bg-white bg-opacity-20 backdrop-blur-md rounded-full p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+        </svg>
+    </button>
+</div>
+
+<div class="flex-1 flex flex-col justify-center items-center">
+    <div class="w-48 h-48 rounded-full border-2 border-white border-opacity-30 flex items-center justify-center mb-8">
+        <div class="w-40 h-40 rounded-full border-2 border-white border-opacity-50 flex items-center justify-center">
+            <div class="w-32 h-32 rounded-full bg-center bg-cover" style="background-image: url('https://images.unsplash.com/photo-1518926425807-e0b6b0dc931c?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80')"></div>
+        </div>
+    </div>
+    
+    <h2 class="text-2xl font-bold mb-2 text-center">早晨唤醒冥想</h2>
+    <p class="text-white text-opacity-80 mb-8 text-center">引导冥想 · 张老师</p>
+    
+    <div class="w-full mb-4">
+        <div class="w-full h-1 bg-white bg-opacity-20 rounded-full mb-2">
+            <div class="w-1/3 h-1 bg-white rounded-full"></div>
+        </div>
+        <div class="flex justify-between text-sm text-white text-opacity-60">
+            <span>6:45</span>
+            <span>20:00</span>
+        </div>
+    </div>
+    
+    <div class="flex items-center justify-center space-x-8">
+        <button class="p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
+            </svg>
+        </button>
+        <button class="bg-white rounded-full p-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </button>
+        <button class="p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z" />
+            </svg>
+        </button>
+    </div>
+</div>
+
+<div class="flex justify-between mb-4">
+    <button class="flex items-center px-4 py-2 bg-white bg-opacity-10 rounded-full text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414 1.414m2.828-9.9a9 9 0 012.728-2.728" />
+        </svg>
+        <span>背景音乐</span>
+    </button>
+    <button class="flex items-center px-4 py-2 bg-white bg-opacity-10 rounded-full text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
+        <span>添加提醒</span>
+    </button>
+</div>
+</div>
+</div>
+
+<!-- 冥想计时器页面 -->
+<div class="screen bg-white">
+<div class="status-bar bg-white"></div>
+<div class="p-6">
+<div class="flex justify-between items-center mb-8">
+    <h1 class="text-2xl font-bold text-gray-800">冥想计时器</h1>
+    <button class="p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+    </button>
+</div>
+
+<div class="flex justify-center mb-8">
+    <div class="w-64 h-64 rounded-full flex items-center justify-center bg-gray-50 relative">
+        <div class="w-56 h-56 rounded-full border-4 border-indigo-500 flex items-center justify-center">
+            <span class="text-4xl font-bold text-gray-800">15:00</span>
+        </div>
+        <div class="absolute top-0 right-0 bottom-0 left-0">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+                <circle cx="50" cy="50" r="48" fill="none" stroke="#E2E8F0" stroke-width="2" />
+                <circle cx="50" cy="50" r="48" fill="none" stroke="#6366F1" stroke-width="4" stroke-dasharray="301.59" stroke-dashoffset="0" transform="rotate(-90 50 50)" />
+            </svg>
+        </div>
+    </div>
+</div>
+
+<div class="bg-gray-50 rounded-xl p-5 mb-6">
+    <h3 class="font-medium text-gray-800 mb-3">选择时长</h3>
+    <div class="flex justify-between">
+        <button class="bg-white border border-gray-200 rounded-lg py-2 px-4 text-sm font-medium text-gray-600">5分钟</button>
+        <button class="bg-indigo-600 text-white rounded-lg py-2 px-4 text-sm font-medium">15分钟</button>
+        <button class="bg-white border border-gray-200 rounded-lg py-2 px-4 text-sm font-medium text-gray-600">30分钟</button>
+        <button class="bg-white border border-gray-200 rounded-lg py-2 px-4 text-sm font-medium text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+        </button>
+    </div>
+</div>
+
+<div class="bg-gray-50 rounded-xl p-5 mb-10">
+    <h3 class="font-medium text-gray-800 mb-3">背景音效</h3>
+    <div class="grid grid-cols-3 gap-3">
+        <button class="flex flex-col items-center justify-center p-3 bg-white border border-gray-200 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 18v-6a9 9 0 0118 0v6" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z" />
+            </svg>
+            <span class="text-xs text-gray-600">无</span>
+        </button>
+        <button class="flex flex-col items-center justify-center p-3 bg-indigo-100 border border-indigo-200 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-xs text-indigo-600">雨声</span>
+        </button>
+        <button class="flex flex-col items-center justify-center p-3 bg-white border border-gray-200 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414 1.414m2.828-9.9a9 9 0 012.728-2.728" />
+            </svg>
+            <span class="text-xs text-gray-600">海浪</span>
+        </button>
+        <button class="flex flex-col items-center justify-center p-3 bg-white border border-gray-200 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+            <span class="text-xs text-gray-600">风铃</span>
+        </button>
+        <button class="flex flex-col items-center justify-center p-3 bg-white border border-gray-200 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+            <span class="text-xs text-gray-600">森林</span>
+        </button>
+        <button class="flex flex-col items-center justify-center p-3 bg-white border border-gray-200 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            <span class="text-xs text-gray-600">更多</span>
+        </button>
+    </div>
+</div>
+
+<button class="bg-indigo-600 text-white py-4 rounded-xl w-full font-medium text-lg shadow-md">开始冥想</button>
+</div>
+</div>
+
+<!-- 统计页面 -->
+<div class="screen bg-white">
+<div class="status-bar bg-white"></div>
+<div class="p-6 pb-20">
+<div class="flex justify-between items-center mb-8">
+    <h1 class="text-2xl font-bold text-gray-800">统计</h1>
+    <button class="p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+    </button>
+</div>
+
+<div class="bg-indigo-50 rounded-xl p-6 mb-6">
+    <div class="flex justify-between items-center mb-4">
+        <div>
+            <h3 class="font-medium text-indigo-900">本周进度</h3>
+            <p class="text-indigo-700 text-sm">已完成4/7天</p>
+        </div>
+        <div class="text-indigo-600 text-sm font-medium">周目标: 7天</div>
+    </div>
+    <div class="flex justify-between mb-2">
+        <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm">一</div>
+        <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm">二</div>
+        <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm">三</div>
+        <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm">四</div>
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm">五</div>
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm">六</div>
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm">日</div>
+    </div>
+</div>
+
+<div class="flex justify-between mb-6">
+    <div class="bg-green-50 rounded-xl p-4 w-[48%]">
+        <h3 class="text-green-900 text-sm mb-2">总冥想时长</h3>
+        <div class="flex items-end">
+            <span class="text-2xl font-bold text-green-800 mr-1">246</span>
+            <span class="text-green-700 text-sm">分钟</span>
+        </div>
+    </div>
+    <div class="bg-amber-50 rounded-xl p-4 w-[48%]">
+        <h3 class="text-amber-900 text-sm mb-2">连续冥想</h3>
+        <div class="flex items-end">
+            <span class="text-2xl font-bold text-amber-800 mr-1">12</span>
+            <span class="text-amber-700 text-sm">天</span>
+        </div>
+    </div>
+</div>
+
+<h3 class="font-medium text-gray-800 mb-4">冥想记录</h3>
+<div class="space-y-4 mb-6">
+    <div class="bg-gray-50 rounded-xl p-4">
+        <div class="flex justify-between mb-1">
+            <h4 class="font-medium text-gray-800">早晨唤醒冥想</h4>
+            <span class="text-gray-500 text-sm">今天</span>
+        </div>
+        <div class="flex justify-between">
+            <span class="text-gray-500 text-sm">张老师</span>
+            <span class="text-indigo-600 text-sm font-medium">20分钟</span>
+        </div>
+    </div>
+    
+    <div class="bg-gray-50 rounded-xl p-4">
+        <div class="flex justify-between mb-1">
+            <h4 class="font-medium text-gray-800">减压放松</h4>
+            <span class="text-gray-500 text-sm">昨天</span>
+        </div>
+        <div class="flex justify-between">
+            <span class="text-gray-500 text-sm">李老师</span>
+            <span class="text-indigo-600 text-sm font-medium">15分钟</span>
+        </div>
+    </div>
+    
+    <div class="bg-gray-50 rounded-xl p-4">
+        <div class="flex justify-between mb-1">
+            <h4 class="font-medium text-gray-800">睡前放松</h4>
+            <span class="text-gray-500 text-sm">前天</span>
+        </div>
+        <div class="flex justify-between">
+            <span class="text-gray-500 text-sm">王老师</span>
+            <span class="text-indigo-600 text-sm font-medium">18分钟</span>
+        </div>
+    </div>
+</div>
+
+<h3 class="font-medium text-gray-800 mb-4">冥想见解</h3>
+<div class="bg-gray-50 rounded-xl p-4">
+    <p class="text-gray-600 text-sm mb-3">根据你的冥想数据，你在早晨冥想效果最好，平均专注度达到85%。建议继续保持早晨冥想习惯。</p>
+    <div class="flex justify-between">
+        <span class="text-xs text-gray-500">最佳冥想时段: 早晨7:00-8:00</span>
+        <span class="text-xs text-gray-500">最佳冥想时长: 15-20分钟</span>
+    </div>
+</div>
+</div>
+
+<div class="bottom-bar bg-white border-t border-gray-200 absolute bottom-0 left-0 right-0 flex justify-around items-center">
+<div class="flex flex-col items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+    </svg>
+    <span class="text-xs mt-1 text-gray-400">首页</span>
+</div>
+<div class="flex flex-col items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+    </svg>
+    <span class="text-xs mt-1 text-gray-400">发现</span>
+</div>
+<div class="flex flex-col items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+    </svg>
+    <span class="text-xs mt-1 text-indigo-600 font-medium">统计</span>
+</div>
+<div class="flex flex-col items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+    </svg>
+    <span class="text-xs mt-1 text-gray-400">我的</span>
+</div>
+</div>
+</div>
+
+<!-- 个人资料页面 -->
+<div class="screen bg-white">
+<div class="status-bar bg-white"></div>
+<div class="p-6 pb-20">
+<div class="flex justify-between items-center mb-8">
+    <h1 class="text-2xl font-bold text-gray-800">个人中心</h1>
+    <button class="p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+    </button>
+</div>
+
+<div class="flex items-center mb-8">
+    <div class="w-20 h-20 rounded-full bg-cover bg-center mr-4" style="background-image: url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')"></div>
+    <div>
+        <h2 class="text-xl font-bold text-gray-800 mb-1">李明</h2>
+        <p class="text-gray-500 mb-2">冥想爱好者</p>
+        <button class="text-indigo-600 text-sm font-medium">编辑资料</button>
+    </div>
+</div>
+
+<div class="grid grid-cols-3 gap-4 mb-8">
+    <div class="bg-gray-50 rounded-xl p-3 text-center">
+        <h3 class="text-2xl font-bold text-gray-800 mb-1">12</h3>
+        <p class="text-gray-500 text-xs">连续天数</p>
+    </div>
+    <div class="bg-gray-50 rounded-xl p-3 text-center">
+        <h3 class="text-2xl font-bold text-gray-800 mb-1">246</h3>
+        <p class="text-gray-500 text-xs">总分钟数</p>
+    </div>
+    <div class="bg-gray-50 rounded-xl p-3 text-center">
+        <h3 class="text-2xl font-bold text-gray-800 mb-1">32</h3>
+        <p class="text-gray-500 text-xs">冥想次数</p>
+    </div>
+</div>
+
+<div class="space-y-4 mb-8">
+    <div class="bg-gray-50 rounded-xl p-4">
+        <h3 class="font-medium text-gray-800 mb-3">会员信息</h3>
+        <div class="flex justify-between items-center">
+            <div>
+                <p class="text-gray-600 text-sm">当前套餐: 免费用户</p>
+                <p class="text-gray-500 text-xs mt-1">体验高级冥想课程和更多功能</p>
+            </div>
+            <button class="bg-indigo-600 text-white text-sm font-medium py-2 px-4 rounded-lg">升级会员</button>
+        </div>
+    </div>
+    
+    <div class="bg-gray-50 rounded-xl p-4">
+        <h3 class="font-medium text-gray-800 mb-3">冥想目标</h3>
+        <div class="flex justify-between items-center">
+            <div>
+                <p class="text-gray-600 text-sm">每周冥想: 7天</p>
+                <p class="text-gray-500 text-xs mt-1">当前进度: 4/7天</p>
+            </div>
+            <button class="text-indigo-600 text-sm font-medium">修改</button>
+        </div>
+    </div>
+    
+    <div class="bg-gray-50 rounded-xl p-4">
+        <h3 class="font-medium text-gray-800 mb-3">提醒设置</h3>
+        <div class="flex justify-between items-center">
+            <div>
+                <p class="text-gray-600 text-sm">每日提醒: 早上7:30</p>
+                <p class="text-gray-500 text-xs mt-1">开启状态</p>
+            </div>
+            <button class="text-indigo-600 text-sm font-medium">修改</button>
+        </div>
+    </div>
+</div>
+
+<div class="space-y-4">
+    <button class="flex justify-between items-center w-full bg-gray-50 rounded-xl p-4">
+        <span class="text-gray-800">我的收藏</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+    
+    <button class="flex justify-between items-center w-full bg-gray-50 rounded-xl p-4">
+                    <span class="text-gray-800">分享给好友</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+                
+                <button class="flex justify-between items-center w-full bg-gray-50 rounded-xl p-4">
+                    <span class="text-gray-800">帮助与反馈</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+                
+                <button class="flex justify-between items-center w-full bg-gray-50 rounded-xl p-4">
+                    <span class="text-gray-800">关于我们</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="bottom-bar bg-white border-t border-gray-200 absolute bottom-0 left-0 right-0 flex justify-around items-center">
+            <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span class="text-xs mt-1 text-gray-400">首页</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <span class="text-xs mt-1 text-gray-400">发现</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <span class="text-xs mt-1 text-gray-400">统计</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span class="text-xs mt-1 text-indigo-600 font-medium">我的</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 发现页面 -->
+    <div class="screen bg-white">
+        <div class="status-bar bg-white"></div>
+        <div class="p-6 pb-20">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold text-gray-800">发现</h1>
+                <button class="p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mb-6">
+                <div class="flex space-x-3 overflow-x-auto pb-3">
+                    <button class="flex-shrink-0 bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium">全部</button>
+                    <button class="flex-shrink-0 bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-medium">初学者</button>
+                    <button class="flex-shrink-0 bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-medium">睡眠</button>
+                    <button class="flex-shrink-0 bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-medium">专注力</button>
+                    <button class="flex-shrink-0 bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-medium">减压</button>
+                    <button class="flex-shrink-0 bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-medium">情绪</button>
+                </div>
+            </div>
+            
+            <div class="mb-8">
+                <h2 class="font-medium text-gray-800 mb-4">热门课程</h2>
+                <div class="relative w-full h-44 rounded-xl overflow-hidden mb-4">
+                    <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover" />
+                    <div class="absolute left-0 right-0 bottom-0 p-4 bg-gradient-to-t from-black to-transparent">
+                        <h3 class="text-white font-bold text-lg mb-1">21天冥想挑战</h3>
+                        <div class="flex items-center text-white text-sm">
+                            <span class="mr-2">21节课</span>
+                            <span class="bg-white bg-opacity-20 px-2 py-1 rounded-full">导师: 王梦</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-50 rounded-xl overflow-hidden">
+                        <div class="h-28 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"></div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-gray-800 mb-1">深度睡眠</h3>
+                            <p class="text-xs text-gray-500">8节课</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl overflow-hidden">
+                        <div class="h-28 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1474418397713-7ede21d49118?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"></div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-gray-800 mb-1">工作减压</h3>
+                            <p class="text-xs text-gray-500">6节课</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-8">
+                <h2 class="font-medium text-gray-800 mb-4">热门导师</h2>
+                <div class="flex space-x-4 overflow-x-auto pb-3">
+                    <div class="flex-shrink-0 w-24 text-center">
+                        <div class="w-16 h-16 rounded-full bg-cover bg-center mx-auto mb-2" style="background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')"></div>
+                        <h4 class="text-sm font-medium text-gray-800">陈静</h4>
+                        <p class="text-xs text-gray-500">冥想导师</p>
+                    </div>
+                    <div class="flex-shrink-0 w-24 text-center">
+                        <div class="w-16 h-16 rounded-full bg-cover bg-center mx-auto mb-2" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')"></div>
+                        <h4 class="text-sm font-medium text-gray-800">张伟</h4>
+                        <p class="text-xs text-gray-500">专注力训练</p>
+                    </div>
+                    <div class="flex-shrink-0 w-24 text-center">
+                        <div class="w-16 h-16 rounded-full bg-cover bg-center mx-auto mb-2" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')"></div>
+                        <h4 class="text-sm font-medium text-gray-800">王梦</h4>
+                        <p class="text-xs text-gray-500">瑜伽冥想</p>
+                    </div>
+                    <div class="flex-shrink-0 w-24 text-center">
+                        <div class="w-16 h-16 rounded-full bg-cover bg-center mx-auto mb-2" style="background-image: url('https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')"></div>
+                        <h4 class="text-sm font-medium text-gray-800">李阳</h4>
+                        <p class="text-xs text-gray-500">睡眠指导</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h2 class="font-medium text-gray-800 mb-4">近期活动</h2>
+                <div class="space-y-4">
+                    <div class="bg-indigo-50 rounded-xl p-4">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="font-medium text-indigo-900">7日冥想挑战</h3>
+                            <div class="bg-indigo-100 text-indigo-600 text-xs font-medium px-2 py-1 rounded-full">进行中</div>
+                        </div>
+                        <p class="text-indigo-700 text-sm mb-3">连续7天，每天15分钟，培养冥想习惯</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="flex -space-x-2">
+                                    <div class="w-6 h-6 rounded-full border-2 border-indigo-50 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80')"></div>
+                                    <div class="w-6 h-6 rounded-full border-2 border-indigo-50 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80')"></div>
+                                    <div class="w-6 h-6 rounded-full border-2 border-indigo-50 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80')"></div>
+                                </div>
+                                <span class="text-xs text-indigo-700 ml-1">326人参与</span>
+                            </div>
+                            <button class="bg-indigo-600 text-white text-xs font-medium py-1 px-3 rounded-lg">加入</button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-4">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="font-medium text-gray-800">晚间深度放松</h3>
+                            <div class="bg-gray-200 text-gray-600 text-xs font-medium px-2 py-1 rounded-full">报名中</div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">每晚10点，线上直播指导冥想</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="flex -space-x-2">
+                                    <div class="w-6 h-6 rounded-full border-2 border-white bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80')"></div>
+                                    <div class="w-6 h-6 rounded-full border-2 border-white bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80')"></div>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">182人参与</span>
+                            </div>
+                            <button class="bg-gray-600 text-white text-xs font-medium py-1 px-3 rounded-lg">报名</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bottom-bar bg-white border-t border-gray-200 absolute bottom-0 left-0 right-0 flex justify-around items-center">
+            <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span class="text-xs mt-1 text-gray-400">首页</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <span class="text-xs mt-1 text-indigo-600 font-medium">发现</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <span class="text-xs mt-1 text-gray-400">统计</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span class="text-xs mt-1 text-gray-400">我的</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 冥想完成页面 -->
+    <div class="screen bg-gradient-to-b from-indigo-900 to-purple-900 text-white">
+        <div class="status-bar bg-transparent"></div>
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex justify-end mb-6">
+                <button class="bg-white bg-opacity-20 backdrop-blur-md rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="flex-1 flex flex-col justify-center items-center text-center">
+                <div class="relative mb-8">
+                    <div class="w-32 h-32 rounded-full bg-white bg-opacity-20 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <div class="absolute -top-1 -right-1 w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center text-xl font-bold">+3</div>
+                </div>
+                
+                <h2 class="text-2xl font-bold mb-2">恭喜你完成冥想!</h2>
+                <p class="text-white text-opacity-80 mb-8">今天是你连续冥想的第12天<br/>你已经累计冥想246分钟</p>
+                
+                <div class="w-full bg-white bg-opacity-10 rounded-xl p-4 mb-6">
+                    <h3 class="font-medium mb-3">本次冥想</h3>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-white text-opacity-70">冥想课程</span>
+                        <span>早晨唤醒冥想</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-white text-opacity-70">冥想时长</span>
+                        <span>20分钟</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-white text-opacity-70">完成时间</span>
+                        <span>2023年5月15日 08:20</span>
+                    </div>
+                </div>
+                
+                <p class="text-white text-opacity-70 italic mb-6">"每一次呼吸都是新的开始，每一次冥想都在重塑更好的自己。"</p>
+                
+                <div class="flex space-x-4">
+                    <button class="flex items-center justify-center bg-white bg-opacity-10 text-white rounded-xl py-3 px-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                        </svg>
+                        <span>分享</span>
+                    </button>
+                    <button class="flex items-center justify-center bg-white text-indigo-900 rounded-xl py-3 px-6 font-medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                        <span>完成</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,5 +1,10 @@
 {
   "version": 2,
-  "builds": [{ "src": "public/index.html", "use": "@vercel/static" }],
-  "routes": [{ "src": "/(.*)", "dest": "/public/index.html" }]
+  "builds": [
+    { "src": "index.html", "use": "@vercel/static" }, // 静态 HTML
+    { "src": "api/*.js", "use": "@vercel/node" }      // Node.js API
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/index.html" }         // SPA 回退
+  ]
 }
